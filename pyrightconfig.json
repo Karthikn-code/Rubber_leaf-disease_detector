@@ -1,0 +1,21 @@
+{
+  "venvPath": "c:/Users/Karthik N/OneDrive/Desktop/Rubber_leaf",
+  "venv": ".venv",
+  "pythonVersion": "3.12",
+  "pythonPlatform": "Windows",
+  "typeCheckingMode": "off",
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none",
+  "reportUndefinedVariable": "none",
+  "reportGeneralTypeIssues": "none",
+  "include": [
+    "ai_model/src",
+    "backend",
+    "test_api.py",
+    "convert_model.py"
+  ],
+  "extraPaths": [
+    "c:/Users/Karthik N/OneDrive/Desktop/Rubber_leaf/.venv/Lib/site-packages",
+    "c:/Users/Karthik N/OneDrive/Desktop/Rubber_leaf/backend"
+  ]
+}

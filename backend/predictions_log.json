@@ -1,0 +1,596 @@
+[
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9993076324462891,
+    "date": "2026-03-21T10:22:56.237523",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9914034008979797,
+    "date": "2026-03-21T10:23:12.062159",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9999634027481079,
+    "date": "2026-03-21T10:23:29.808759",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.98335200548172,
+    "date": "2026-03-21T11:02:07.594431",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9827753901481628,
+    "date": "2026-03-21T11:02:35.474663",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9993076324462891,
+    "date": "2026-03-21T11:02:51.853147",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9987509250640869,
+    "date": "2026-03-21T13:12:30.568635",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9987509250640869,
+    "date": "2026-03-21T13:55:28.563472",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9997997879981995,
+    "date": "2026-03-21T13:55:42.050160",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9995701909065247,
+    "date": "2026-03-21T18:43:24.301635",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9995701909065247,
+    "date": "2026-03-21T19:03:41.674447",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9997997879981995,
+    "date": "2026-03-21T19:04:20.536543",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9898840188980103,
+    "date": "2026-03-21T19:04:28.363077",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.9950501322746277,
+    "date": "2026-03-21T19:04:40.293297",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.999927282333374,
+    "date": "2026-03-21T19:04:54.969520",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9702529311180115,
+    "date": "2026-03-21T19:05:05.664986",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9986699819564819,
+    "date": "2026-03-21T19:05:16.079311",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.5239738821983337,
+    "date": "2026-03-21T19:05:46.629679",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.974415123462677,
+    "date": "2026-03-21T19:31:35.705245",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.974415123462677,
+    "date": "2026-03-21T20:27:52.545340",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.8,
+    "date": "2026-03-22T23:22:13.981137",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.8,
+    "date": "2026-03-22T23:23:16.839082",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.8,
+    "date": "2026-03-22T23:23:30.252155",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.997,
+    "date": "2026-03-22T23:26:21.220593",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.997,
+    "date": "2026-03-22T23:26:35.501799",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.997,
+    "date": "2026-03-22T23:26:45.504923",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9187691353720531,
+    "date": "2026-03-22T23:28:28.242584",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.8910910596929695,
+    "date": "2026-03-22T23:28:35.345938",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.8737404390959259,
+    "date": "2026-03-22T23:28:51.633284",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9097708851067322,
+    "date": "2026-03-22T23:29:03.234566",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9159456341910636,
+    "date": "2026-03-22T23:35:22.353615",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9013172963825987,
+    "date": "2026-03-22T23:37:59.859206",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.922158185400559,
+    "date": "2026-03-22T23:39:18.851709",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9123416431447854,
+    "date": "2026-03-22T23:42:39.697466",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.922810097313681,
+    "date": "2026-03-22T23:42:49.505401",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9301867360676718,
+    "date": "2026-03-22T23:44:30.765458",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.8844286589606029,
+    "date": "2026-03-22T23:46:39.255417",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9357906934842182,
+    "date": "2026-03-22T23:47:52.494917",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9186401662078407,
+    "date": "2026-03-23T00:00:54.490508",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9044655971566058,
+    "date": "2026-03-23T00:02:35.276799",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9322655834261993,
+    "date": "2026-03-23T00:12:18.542696",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.8932800044231941,
+    "date": "2026-03-23T00:14:57.559005",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9225985106873644,
+    "date": "2026-03-23T00:19:49.460466",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9144971886425421,
+    "date": "2026-03-23T00:23:13.315397",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9375141328381511,
+    "date": "2026-03-23T00:24:10.174014",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.25,
+    "date": "2026-03-23T23:33:35.779899",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.25,
+    "date": "2026-03-23T23:33:44.179998",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9990110397338867,
+    "date": "2026-03-23T23:38:29.967204",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.999326229095459,
+    "date": "2026-03-23T23:38:56.076721",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.999326229095459,
+    "date": "2026-03-23T23:47:24.645570",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.999326229095459,
+    "date": "2026-03-23T23:47:31.569356",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.8714077381684749,
+    "date": "2026-03-24T18:58:27.402161",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9124622507689442,
+    "date": "2026-03-24T18:59:13.011365",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.8981224448100794,
+    "date": "2026-03-24T19:00:48.245591",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.9084291523067324,
+    "date": "2026-03-24T19:19:01.741644",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.8996224108311337,
+    "date": "2026-03-24T19:29:34.382213",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.9005543504635157,
+    "date": "2026-03-24T20:35:25.819854",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.927885038381348,
+    "date": "2026-03-24T20:35:39.995336",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.8935693744361205,
+    "date": "2026-03-24T20:49:58.860582",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.8934928952063872,
+    "date": "2026-03-24T20:50:03.925753",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.9264167179907027,
+    "date": "2026-03-24T20:51:04.573381",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.9443797901602723,
+    "date": "2026-03-24T20:55:54.740360",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.8905849418120521,
+    "date": "2026-03-24T21:14:23.965265",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9291222211255319,
+    "date": "2026-03-24T21:19:27.283644",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9328850268045148,
+    "date": "2026-03-24T21:38:46.502195",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9297268746525071,
+    "date": "2026-03-24T21:39:09.822798",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.908727749756375,
+    "date": "2026-03-24T22:31:45.528955",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9097137083788762,
+    "date": "2026-03-24T22:31:55.200358",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9136757031523168,
+    "date": "2026-03-24T22:57:37.091312",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.8963318127808746,
+    "date": "2026-03-24T22:57:45.069312",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9248673040856628,
+    "date": "2026-03-24T23:38:40.070407",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9371374528477987,
+    "date": "2026-03-25T00:49:30.515906",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9167554518543658,
+    "date": "2026-03-25T00:50:34.220578",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9213954543556021,
+    "date": "2026-03-25T01:00:30.946355",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9024507794900273,
+    "date": "2026-03-25T01:02:35.951167",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9226247479534452,
+    "date": "2026-03-25T01:13:24.281878",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.8862553458480034,
+    "date": "2026-03-25T01:13:45.366736",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9234000934604804,
+    "date": "2026-03-25T01:14:15.408145",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.999326229095459,
+    "date": "2026-03-25T07:24:17.670449",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9791243672370911,
+    "date": "2026-03-25T07:29:08.010977",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9964184761047363,
+    "date": "2026-03-25T07:29:42.143769",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9462519884109497,
+    "date": "2026-03-25T07:30:13.350537",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9985952973365784,
+    "date": "2026-03-25T07:30:35.527543",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Anthracnose",
+    "confidence": 0.9883769154548645,
+    "date": "2026-03-25T07:43:02.406574",
+    "common_name": "Colletotrichum Leaf Disease / Anthracnose"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9962432384490967,
+    "date": "2026-03-25T07:43:59.237391",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.8908357601953121,
+    "date": "2026-03-31T23:12:42.244036",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.899878246402889,
+    "date": "2026-03-31T23:13:56.668067",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.8984593993455688,
+    "date": "2026-04-06T19:30:35.608617",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9402219981634695,
+    "date": "2026-04-06T19:30:45.421584",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Dry_Leaf",
+    "confidence": 0.9134730082872488,
+    "date": "2026-04-06T20:22:44.033720",
+    "common_name": "Phytophthora Bark Rot / Dry Leaf Syndrome"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9902092218399048,
+    "date": "2026-04-06T20:32:50.690981",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9902092218399048,
+    "date": "2026-04-06T20:33:33.198452",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9997518658638,
+    "date": "2026-04-06T20:34:02.393379",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9923136830329895,
+    "date": "2026-04-06T20:34:44.725654",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9820300936698914,
+    "date": "2026-04-06T20:35:20.423958",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Healthy",
+    "confidence": 0.9977622032165527,
+    "date": "2026-04-06T21:18:39.869720",
+    "common_name": "Healthy Rubber Leaf"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9990492463111877,
+    "date": "2026-04-06T21:19:00.056029",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9958481788635254,
+    "date": "2026-04-06T21:42:35.417047",
+    "common_name": "Corynespora Leaf Fall Disease"
+  },
+  {
+    "label": "Leaf_Spot",
+    "confidence": 0.9958481788635254,
+    "date": "2026-04-06T21:43:26.279880",
+    "common_name": "Corynespora Leaf Fall Disease"
+  }
+]

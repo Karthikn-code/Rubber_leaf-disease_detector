@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "297604406562",
+    "project_id": "rubberleafapp",
+    "storage_bucket": "rubberleafapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297604406562:android:66914c384b16ec7af1d97b",
+        "android_client_info": {
+          "package_name": "com.rubberleaf.mobile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkboH4Opk2DBk1HhwsMxNeHbXyfW7vFHs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

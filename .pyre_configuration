@@ -1,0 +1,8 @@
+{
+  "source_directories": [],
+  "exclude": [
+    "backend/.*",
+    "ai_model/.*",
+    ".venv/.*"
+  ]
+}
