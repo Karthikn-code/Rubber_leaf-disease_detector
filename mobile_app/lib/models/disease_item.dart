@@ -14,6 +14,19 @@ class DiseaseItem {
     required this.rootCause, required this.economicImpact,
   });
 
+  Map<String, dynamic> toMap() => {
+    'common_name': name,
+    'scientific_name': scientificName,
+    'severity_level': severity,
+    'severity_color': color == Colors.red ? 'RED' : (color == Colors.orange ? 'ORANGE' : 'GREEN'),
+    'symptoms': symptoms,
+    'causes': rootCause,
+    'treatment': treatment,
+    'prevention': prevention,
+    'economic_impact': economicImpact,
+    'urgency': severity == 'Critical' ? 'Immediate attention' : (severity == 'High' ? 'Treat immediately' : 'Monitor closely'),
+  };
+
   static final List<DiseaseItem> all = [
     const DiseaseItem(
       name: 'Colletotrichum Leaf Disease',

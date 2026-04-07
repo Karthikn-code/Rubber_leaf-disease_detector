@@ -1,0 +1,31 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1775568303.123615   15300 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1775568304.843968   15300 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Rubber_leaf\backend\venv\Lib\site-packages\tensorflow\lite\python\interpreter.py:457: UserWarning:     Warning: tf.lite.Interpreter is deprecated and is scheduled for deletion in
+    TF 2.20. Please use the LiteRT interpreter from the ai_edge_litert package.
+    See the [migration guide](https://ai.google.dev/edge/litert/migration)
+    for details.
+    
+  warnings.warn(_INTERPRETER_DELETION_WARNING)
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+--- Model Accuracy Verification (TFLite Backend) ---
+Testing Anthracnose (50 images)...
+  Debug [0]: True=Anthracnose, Pred=Anthracnose, Confidence=0.9926
+Testing Dry_Leaf (50 images)...
+  Debug [0]: True=Dry_Leaf, Pred=Dry_Leaf, Confidence=0.9999
+Testing Healthy (50 images)...
+  Debug [0]: True=Healthy, Pred=Healthy, Confidence=0.9891
+Testing Leaf_Spot (50 images)...
+  Debug [0]: True=Leaf_Spot, Pred=Leaf_Spot, Confidence=0.9996
+
+==================================================
+Class Name      | Tested   | Correct  | Accuracy  
+--------------------------------------------------
+Anthracnose     | 50       | 50       |   100.00%
+Dry_Leaf        | 50       | 50       |   100.00%
+Healthy         | 50       | 50       |   100.00%
+Leaf_Spot       | 50       | 50       |   100.00%
+--------------------------------------------------
+OVERALL         | 200      | 200      |   100.00%
+==================================================

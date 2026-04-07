@@ -1,6 +1,11 @@
 flask
 flask-cors
-opencv-python
+opencv-python-headless
 tensorflow
 numpy
 requests
+waitress
+gunicorn
+matplotlib
+scikit-learn
+h5py

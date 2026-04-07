@@ -1,7 +1,14 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:geolocator/geolocator.dart';
 import 'package:camera/camera.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../services/tflite_service.dart';
+import '../widgets/common_widgets.dart';
+import '../providers/history_store.dart';
+import '../models/prediction_record.dart';
+import '../models/disease_item.dart';
 
 class RealtimeScanPage extends StatefulWidget {
   const RealtimeScanPage({Key? key}) : super(key: key);
@@ -17,6 +24,10 @@ class _RealtimeScanPageState extends State<RealtimeScanPage> {
   String _predictedLabel = "Scanning...";
   double _confidence = 0.0;
   String? _errorMessage;
+
+  int _consecutiveHighConfidenceCount = 0;
+  final int _lockThreshold = 8;
+  bool _didLock = false;
 
   @override
   void initState() {
@@ -45,16 +56,33 @@ class _RealtimeScanPageState extends State<RealtimeScanPage> {
       setState(() {});
 
       _cameraController!.startImageStream((CameraImage image) async {
-        if (_isProcessing) return; // Drop frame if still processing
+        if (_isProcessing || _didLock) return; // Drop frame if processing or locked
         _isProcessing = true;
 
         final result = await _tfliteService.predictFuture(image);
         
-        if (result != null && mounted) {
-          setState(() {
-            _predictedLabel = result['label'];
-            _confidence = result['confidence'];
-          });
+        if (result != null && mounted && !_didLock) {
+          final label = result['label'];
+          final conf = result['confidence'];
+
+          // Auto-Lock Logic: Ignore 'Healthy' because we want to lock onto diseases
+          if (conf > 0.88 && label != 'Healthy') {
+             _consecutiveHighConfidenceCount++;
+          } else {
+             _consecutiveHighConfidenceCount = 0;
+          }
+
+          if (_consecutiveHighConfidenceCount >= _lockThreshold) {
+             _didLock = true;
+             await _lockAndSaveResult(label, conf);
+          }
+
+          if (mounted && !_didLock) {
+            setState(() {
+              _predictedLabel = label;
+              _confidence = conf;
+            });
+          }
         }
         _isProcessing = false;
       });
@@ -62,6 +90,52 @@ class _RealtimeScanPageState extends State<RealtimeScanPage> {
       debugPrint("Camera Error: $e");
       if (mounted) setState(() => _errorMessage = "Camera Error: Missing camera support on this platform.");
     }
+  }
+
+  Future<void> _lockAndSaveResult(String label, double confidence) async {
+    if (mounted) setState(() { _errorMessage = "Disease Locked! Syncing to Server..."; });
+    
+    // Stop camera temporarily
+    try { await _cameraController?.stopImageStream(); } catch(_) {}
+    XFile? pic;
+    try { pic = await _cameraController?.takePicture(); } catch(_) {}
+
+    // 1. Sync Analytics to Flask Backend
+    try {
+      final reqBody = jsonEncode({'label': label, 'confidence': confidence});
+      await http.post(
+           Uri.parse('$kApiBaseUrl/log_prediction'), 
+           headers: {'Content-Type': 'application/json'},
+           body: reqBody
+      ).timeout(const Duration(seconds: 4));
+    } catch (e) {
+      debugPrint("Backend Sync Error: $e");
+    }
+
+    // 2. Save offline record
+    final item = DiseaseItem.all.firstWhere((d) => d.classLabel == label, orElse: () => DiseaseItem.all.last);
+    Position? pos;
+    try { pos = await Geolocator.getCurrentPosition(timeLimit: const Duration(seconds: 2)); } catch(_) {}
+
+    HistoryStore().add(PredictionRecord(
+      imagePath: pic?.path ?? "", 
+      label: label,
+      commonName: label,
+      confidence: confidence,
+      severity: item.severity,
+      urgency: "",
+      timestamp: DateTime.now(),
+      allScores: {label: confidence},
+      latitude: pos?.latitude,
+      longitude: pos?.longitude,
+    ));
+
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text("Diagnostic result saved & analytics synced successfully!"),
+      backgroundColor: Colors.green,
+    ));
+    Navigator.pop(context); // Return to Predict Page
   }
 
   @override

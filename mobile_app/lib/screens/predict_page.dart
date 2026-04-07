@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
@@ -14,6 +15,7 @@ import '../services/pdf_service.dart';
 import '../services/weather_service.dart';
 import 'login_page.dart';
 import 'realtime_scan_page.dart';
+import '../services/tflite_service.dart';
 
 class PredictPage extends StatefulWidget {
   const PredictPage({super.key});
@@ -22,7 +24,7 @@ class PredictPage extends StatefulWidget {
 }
 
 class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin {
-  File? _img;
+  XFile? _img;
   bool _loading = false;
   Map<String, dynamic>? _result;
   String? _error;
@@ -31,8 +33,10 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
   bool _weatherLoading = true;
   late AnimationController _pulse;
   late Animation<double> _pulsA;
+  final TfliteService _tf = TfliteService();
 
-  final offlineMode = ValueNotifier<bool>(false);
+  final offlineMode = ValueNotifier<bool>(true);
+  bool _isValid = true;
 
   @override
   void initState() {
@@ -40,6 +44,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
     _pulse = AnimationController(vsync: this, duration: const Duration(seconds: 2))..repeat(reverse: true);
     _pulsA = Tween(begin: 0.93, end: 1.07).animate(CurvedAnimation(parent: _pulse, curve: Curves.easeInOut));
     _initWeather();
+    _tf.loadModel();
   }
 
   Future<void> _initWeather() async {
@@ -57,7 +62,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
 
   Future<void> _pick() async {
     final p = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 90);
-    if (p != null) setState(() { _img = File(p.path); _result = null; _error = null; _saved = false; });
+    if (p != null) setState(() { _img = p; _result = null; _error = null; _saved = false; });
   }
 
   Future<Position?> _getPos() async {
@@ -74,7 +79,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
 
   Future<void> _detect() async {
     if (_img == null) return;
-    setState(() { _loading = true; _error = null; _saved = false; });
+    setState(() { _loading = true; _error = null; _saved = false; _isValid = true; });
     try {
       Position? pos;
       try { pos = await _getPos(); } catch(_) {}
@@ -82,40 +87,44 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
       Map<String, dynamic> data;
 
       if (offlineMode.value) {
-        // Mock offline for now as TFLite logic is complex to move without refactoring OfflinePredictor
+        final res = await _tf.predictFile(File(_img!.path));
+        if (res == null) throw 'Inference failed';
+        
+        _isValid = res['isValid'] ?? true;
         data = {
-          'label': 'Healthy',
-          'confidence': 0.98,
-          'all_predictions': {'Anthracnose': 0.01, 'Dry_Leaf': 0.01, 'Healthy': 0.98, 'Leaf_Spot': 0.00},
-          'disease_info': {
-            'common_name': 'Healthy',
-            'severity_level': 'None',
-            'urgency': 'No action required',
-          }
+          'label': res['label'],
+          'confidence': res['confidence'],
+          'all_predictions': res['all_predictions'],
+          'disease_info': DiseaseItem.all.firstWhere((d) => d.classLabel == res['label']).toMap(),
         };
       } else {
         final req = http.MultipartRequest('POST', Uri.parse('$kApiBaseUrl/predict'));
-        req.files.add(await http.MultipartFile.fromPath('image', _img!.path));
-        final res  = await req.send().timeout(const Duration(seconds: 15));
-        final body = await res.stream.bytesToString();
+        final bytes = await _img!.readAsBytes();
+        req.files.add(http.MultipartFile.fromBytes('image', bytes, filename: _img!.name));
+        final resp  = await req.send().timeout(const Duration(seconds: 15));
+        final body = await resp.stream.bytesToString();
         data = json.decode(body) as Map<String, dynamic>;
+        _isValid = (data['confidence'] as num).toDouble() >= 0.90;
       }
 
-      final info = data['disease_info'] as Map<String, dynamic>? ?? {};
-      final all  = data['all_predictions'] as Map<String, dynamic>? ?? {};
-      
-      HistoryStore().add(PredictionRecord(
-        imagePath: _img!.path, label: data['label'] as String,
-        commonName: info['common_name']?.toString() ?? data['label'] as String,
-        confidence: (data['confidence'] as num).toDouble(),
-        severity: info['severity_level']?.toString() ?? 'Unknown',
-        urgency: info['urgency']?.toString() ?? '',
-        timestamp: DateTime.now(),
-        allScores: all.map((k, v) => MapEntry(k, (v as num).toDouble())),
-        latitude: pos?.latitude,
-        longitude: pos?.longitude,
-      ));
-      setState(() { _result = data; _loading = false; _saved = true; });
+      if (_isValid) {
+        final info = data['disease_info'] as Map<String, dynamic>? ?? {};
+        final all  = data['all_predictions'] as Map<String, dynamic>? ?? {};
+        
+        HistoryStore().add(PredictionRecord(
+          imagePath: _img!.path, label: data['label'] as String,
+          commonName: info['common_name']?.toString() ?? data['label'] as String,
+          confidence: (data['confidence'] as num).toDouble(),
+          severity: info['severity_level']?.toString() ?? 'Unknown',
+          urgency: info['urgency']?.toString() ?? '',
+          timestamp: DateTime.now(),
+          allScores: all.map((k, v) => MapEntry(k, (v as num).toDouble())),
+          latitude: pos?.latitude,
+          longitude: pos?.longitude,
+        ));
+        _saved = true;
+      }
+      setState(() { _result = data; _loading = false; });
     } catch (e) {
       setState(() {
         _error = 'err_title'.tr(); 
@@ -126,7 +135,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
-    if (_result != null) return _buildResultView();
+    if (_result != null) return _isValid ? _buildResultView() : _buildInvalidView();
 
     return AppBg(child: Scaffold(
       backgroundColor: Colors.transparent,
@@ -146,13 +155,17 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
               child: const Icon(Icons.eco, color: Colors.black, size: 22),
             ),
             const SizedBox(width: 12),
-            Flexible(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('header_title'.tr(), style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w800), overflow: TextOverflow.ellipsis),
-                Text('header_subtitle'.tr(), style: const TextStyle(color: kW40, fontSize: 11), overflow: TextOverflow.ellipsis),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+                Text('header_title'.tr(), 
+                  style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w800), 
+                  maxLines: 1, overflow: TextOverflow.fade, softWrap: false),
+                Text('header_subtitle'.tr(), 
+                  style: const TextStyle(color: kW40, fontSize: 11), 
+                  maxLines: 1, overflow: TextOverflow.ellipsis),
               ]),
             ),
-            const Spacer(),
+            const SizedBox(width: 8),
             ValueListenableBuilder<bool>(
               valueListenable: offlineMode,
               builder: (_, offline, __) => GestureDetector(
@@ -194,7 +207,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
                     borderRadius: BorderRadius.circular(22),
                     child: _img != null
                       ? Stack(fit: StackFit.expand, children: [
-                          Image.file(_img!, fit: BoxFit.contain),
+                          kIsWeb ? Image.network(_img!.path, fit: BoxFit.contain) : Image.file(File(_img!.path), fit: BoxFit.contain),
                           if (_loading) Shimmer.fromColors(baseColor: Colors.transparent, highlightColor: kCyan.withOpacity(0.4), child: Container(color: Colors.white)),
                         ])
                       : Container(color: kCard, child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -217,11 +230,12 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
                 )),
               ]),
               const SizedBox(height: 16),
-              GBtn(
-                icon: Icons.camera_alt_outlined,
-                label: 'btn_live_scan'.tr(),
-                onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RealtimeScanPage())),
-              ),
+              if (!kIsWeb)
+                GBtn(
+                  icon: Icons.camera_alt_outlined,
+                  label: 'btn_live_scan'.tr(),
+                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const RealtimeScanPage())),
+                ),
             ]),
           )),
 
@@ -279,7 +293,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
             ),
             flexibleSpace: FlexibleSpaceBar(
               background: Stack(fit: StackFit.expand, children: [
-                Image.file(_img!, fit: BoxFit.cover),
+                kIsWeb ? Image.network(_img!.path, fit: BoxFit.cover) : Image.file(File(_img!.path), fit: BoxFit.cover),
                 Container(decoration: BoxDecoration(gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Colors.black54, Colors.transparent, kBg]))),
               ]),
             ),
@@ -338,6 +352,33 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
           ),
         ],
       ),
+    ));
+  }
+
+  Widget _buildInvalidView() {
+    return AppBg(child: Scaffold(
+      backgroundColor: Colors.transparent,
+      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0, leading: IconButton(icon: const Icon(Icons.arrow_back, color: Colors.white), onPressed: () => setState(() => _result = null))),
+      body: SingleChildScrollView(padding: const EdgeInsets.all(24), child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        const SizedBox(height: 60),
+        const Icon(Icons.warning_amber_rounded, color: kOrange, size: 80),
+        const SizedBox(height: 24),
+        Text('err_invalid_image_title'.tr(), textAlign: TextAlign.center, style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 16),
+        Text('err_invalid_image_desc'.tr(), textAlign: TextAlign.center, style: const TextStyle(color: kW40, fontSize: 16)),
+        const SizedBox(height: 40),
+        Text('${'lbl_confidence'.tr()}: ${(_result!['confidence'] * 100).toStringAsFixed(1)}%', 
+          style: const TextStyle(color: kW40, fontSize: 14, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 60),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton(
+            onPressed: () => setState(() => _result = null),
+            style: ElevatedButton.styleFrom(backgroundColor: kCyan, foregroundColor: Colors.black, padding: const EdgeInsets.all(16), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
+            child: const Text('Try Another Image', style: TextStyle(fontWeight: FontWeight.bold)),
+          ),
+        ),
+      ])),
     ));
   }
 }

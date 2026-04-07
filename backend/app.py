@@ -24,7 +24,7 @@ except ImportError:
 
 from disease_info import get_disease_info, DISEASE_DATABASE  # type: ignore[import]
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../mobile_app/build/web', static_url_path='/')
 CORS(app)
 
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
@@ -216,6 +216,30 @@ def predict():
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
+# ─── LOG PREDICTION (REAL-TIME SYNC) ─────────────────────────────────────────
+@app.route('/log_prediction', methods=['POST'])
+def log_prediction():
+    try:
+        data = request.get_json()
+        if not data or 'label' not in data or 'confidence' not in data:
+            return jsonify({'error': 'Invalid payload.'}), 400
+
+        label = data['label']
+        confidence = float(data['confidence'])
+        disease_info = get_disease_info(label)
+
+        _append_log({
+            'label': label,
+            'confidence': confidence,
+            'date': datetime.now().isoformat(),
+            'common_name': disease_info.get('common_name', label),
+        })
+        return jsonify({'status': 'success', 'message': 'Prediction logged successfully.'})
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
 
 # ─── ANALYTICS ────────────────────────────────────────────────────────────────
 @app.route('/analytics', methods=['GET'])
@@ -300,9 +324,8 @@ def health():
     })
 
 
-# ─── HOME ────────────────────────────────────────────────────────────────────
-@app.route('/', methods=['GET'])
-def home():
+@app.route('/api/info', methods=['GET'])
+def api_info():
     log          = _load_log()
     model_status = "✅ Loaded & Ready" if model is not None else "❌ Not Loaded"
     html = f"""
@@ -345,6 +368,27 @@ def home():
     </html>
     """
     return html
+
+from flask import send_from_directory
+
+@app.route('/', methods=['GET'])
+def index():
+    if os.path.exists(os.path.join(app.static_folder, 'index.html')):
+        return send_from_directory(app.static_folder, 'index.html')
+    else:
+        return "Flutter web build not found. Please run 'flutter build web' in the mobile_app directory.", 404
+
+@app.route('/<path:path>', methods=['GET'])
+def serve_flutter_assets(path):
+    # Try to return the requested file if it exists, otherwise return index.html for flutter routing
+    full_path = os.path.join(app.static_folder, path)
+    if os.path.exists(full_path) and os.path.isfile(full_path):
+        return send_from_directory(app.static_folder, path)
+    
+    if os.path.exists(os.path.join(app.static_folder, 'index.html')):
+        return send_from_directory(app.static_folder, 'index.html')
+    else:
+        return "Not found", 404
 
 
 if __name__ == '__main__':

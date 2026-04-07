@@ -27,7 +27,14 @@ translations = {
         "Treat immediately": "Treat immediately",
         "Immediate attention": "Immediate attention",
         "Online mode recommended for full details.": "Online mode recommended for full details.",
-        "Connect to server for detailed treatment info.": "Connect to server for detailed treatment info."
+        "Connect to server for detailed treatment info.": "Connect to server for detailed treatment info.",
+        "btn_live_scan": "Real-Time Scanner",
+        "viewing_local_stats": "Viewing Local Statistics",
+        "local_data_hint": "Offline mode showing data from this device only",
+        "err_invalid_image_title": "Image Not Recognized",
+        "err_invalid_image_desc": "Please provide a clear, close-up photo of a Rubber Tree leaf for accurate diagnosis.",
+        "Distribution Breakdown": "Distribution Breakdown",
+        "Detection History": "Detection History"
     },
     'kn': {
         "hint_title": "ಫಲಿತಾಂಶಗಳನ್ನು ಪಡೆಯುವುದು ಹೇಗೆ",
@@ -55,7 +62,14 @@ translations = {
         "Treat immediately": "ತಕ್ಷಣ ಚಿಕಿತ್ಸೆ ನೀಡಿ",
         "Immediate attention": "ತಕ್ಷಣದ ಗಮನ",
         "Online mode recommended for full details.": "ಪೂರ್ಣ ವಿವರಗಳಿಗಾಗಿ ಆನ್‌ಲೈನ್ ಮೋಡ್",
-        "Connect to server for detailed treatment info.": "ವಿವರವಾದ ಮಾಹಿತಿಗಾಗಿ ಸರ್ವರ್‌ಗೆ"
+        "Connect to server for detailed treatment info.": "ವಿವರವಾದ ಮಾಹಿತಿಗಾಗಿ ಸರ್ವರ್‌ಗೆ",
+        "btn_live_scan": "ರಿಯಲ್-ಟೈಮ್ ಸ್ಕ್ಯಾನರ್",
+        "viewing_local_stats": "ಸ್ಥಳೀಯ ಅಂಕಿಅಂಶಗಳನ್ನು ವೀಕ್ಷಿಸಲಾಗುತ್ತಿದೆ",
+        "local_data_hint": "ಈ ಸಾಧನದಿಂದ ಮಾತ್ರ ಡೇಟಾವನ್ನು ತೋರಿಸುವ ಆಫ್‌ಲೈನ್ ಮೋಡ್",
+        "err_invalid_image_title": "ಚಿತ್ರ ಗುರುತಿಸಲಾಗಿಲ್ಲ",
+        "err_invalid_image_desc": "ನಿಖರವಾದ ರೋಗನಿರ್ಣಯಕ್ಕಾಗಿ ರಬ್ಬರ್ ಮರದ ಎಲೆಯ ಸ್ಪಷ್ಟವಾದ, ಹತ್ತಿರದ ಫೋಟೋವನ್ನು ದಯವಿಟ್ಟು ಒದಗಿಸಿ.",
+        "Distribution Breakdown": "ಹಂಚಿಕೆ ಸ್ಥಿತಿ",
+        "Detection History": "ಪತ್ತೆ ಹಚ್ಚಿದ ಇತಿಹಾಸ"
     },
     'hi': {
         "hint_title": "परिणाम कैसे प्राप्त करें",
@@ -83,7 +97,14 @@ translations = {
         "Treat immediately": "तुरंत इलाज करें",
         "Immediate attention": "तत्काल ध्यान दें",
         "Online mode recommended for full details.": "पूर्ण विवरण के लिए ऑनलाइन मोड",
-        "Connect to server for detailed treatment info.": "विस्तृत उपचार जानकारी के लिए सर्वर"
+        "Connect to server for detailed treatment info.": "विस्तृत उपचार जानकारी के लिए सर्वर",
+        "btn_live_scan": "त्वरित स्कैनर",
+        "viewing_local_stats": "स्थानीय आंकड़े देख रहे हैं",
+        "local_data_hint": "केवल इस डिवाइस से डेटा दिखाने वाला ऑफ़लाइन मोड",
+        "err_invalid_image_title": "छवि पहचानी नहीं गई",
+        "err_invalid_image_desc": "सटीक निदान के लिए कृपया रबर के पेड़ की पत्ती की स्पष्ट, क्लोज-अप फोटो प्रदान करें।",
+        "Distribution Breakdown": "वितरण विश्लेषण",
+        "Detection History": "पता लगाने का इतिहास"
     },
     'ta': {
         "hint_title": "முடிவுகளை பெறுவது எப்படி",
@@ -111,7 +132,14 @@ translations = {
         "Treat immediately": "உடனடியாக சிகிச்சையளிக்கவும்",
         "Immediate attention": "உடனடி கவனம்",
         "Online mode recommended for full details.": "முழு விவரங்களுக்கு ஆன்லைன் முறை",
-        "Connect to server for detailed treatment info.": "விரிவான சிகிச்சை தகவலுக்கு சேவையகத்துடன்"
+        "Connect to server for detailed treatment info.": "விரிவான சிகிச்சை தகவலுக்கு சேவையகத்துடன்",
+        "btn_live_scan": "நிகழ்நேர ஸ்கேனர்",
+        "viewing_local_stats": "உள்ளூர் புள்ளிவிவரங்களைப் பார்க்கிறது",
+        "local_data_hint": "இந்தச் சாதனத்திலிருந்து மட்டும் தரவைக் காட்டும் ஆஃப்லைன் பயன்முறை",
+        "err_invalid_image_title": "படம் அடையாளம் காணப்படவில்லை",
+        "err_invalid_image_desc": "துல்லியமான நோயறிதலுக்கு ரப்பர் மர இலையின் தெளிவான, நெருக்கமான புகைப்படத்தை வழங்கவும்.",
+        "Distribution Breakdown": "பரவல் விவரம்",
+        "Detection History": "கண்டறிதல் வரலாறு"
     },
     'ml': {
         "hint_title": "ഫലങ്ങൾ എങ്ങനെ എടുക്കാം",
@@ -139,7 +167,14 @@ translations = {
         "Treat immediately": "ഉടനടി ചികിത്സിക്കുക",
         "Immediate attention": "അടിയന്തര ശ്രദ്ധ",
         "Online mode recommended for full details.": "പൂർണ്ണ വിവരങ്ങൾക്ക് ഓൺലൈൻ മോഡിൽ",
-        "Connect to server for detailed treatment info.": "വിശദമായ ചികിത്സാ വിവരങ്ങൾക്ക് സെർവറുമായി"
+        "Connect to server for detailed treatment info.": "വിശദമായ ചികിത്സാ വിവരങ്ങൾക്ക് സെർവറുമായി",
+        "btn_live_scan": "തത്സമയ സ്കാനർ",
+        "viewing_local_stats": "പ്രാദേശിക സ്ഥിതിവിവരക്കണക്കുകൾ കാണുന്നു",
+        "local_data_hint": "ഈ ഉപകരണത്തിൽ നിന്നുള്ള ഡാറ്റ മാത്രം കാണിക്കുന്ന ഓഫ്‌ലൈൻ മോഡ്",
+        "err_invalid_image_title": "ചിത്രം തിരിച്ചറിഞ്ഞില്ല",
+        "err_invalid_image_desc": "കൃത്യമായ രോഗനിർണ്ണയത്തിനായി റബ്ബർ മരത്തിന്റെ ഇലയുടെ വ്യക്തമായ, ക്ലോസപ്പ് ഫോട്ടോ നൽകുക.",
+        "Distribution Breakdown": "വിതരണ വിശകലനം",
+        "Detection History": "രോഗനിർണ്ണയ ചരിത്രം"
     }
 }
 

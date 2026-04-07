@@ -1,0 +1,47 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1775569813.054993    2128 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1775569815.269994    2128 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+C:\Rubber_leaf\backend\venv\Lib\site-packages\tensorflow\lite\python\interpreter.py:457: UserWarning:     Warning: tf.lite.Interpreter is deprecated and is scheduled for deletion in
+    TF 2.20. Please use the LiteRT interpreter from the ai_edge_litert package.
+    See the [migration guide](https://ai.google.dev/edge/litert/migration)
+    for details.
+    
+  warnings.warn(_INTERPRETER_DELETION_WARNING)
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+I0000 00:00:1775569885.156989    2128 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+C:\Rubber_leaf\backend\venv\Lib\site-packages\keras\src\models\functional.py:241: UserWarning: The structure of `inputs` doesn't match the expected structure.
+Expected: [['keras_tensor']]
+Received: inputs=Tensor(shape=(1, 224, 224, 3))
+  warnings.warn(msg)
+[ WARN:0@73.460] global loadsave.cpp:1089 cv::imwrite_ Unsupported depth image for selected encoder is fallbacked to CV_8U.
+
+--- [1/4] Full Dataset Evaluation (1,741 images) ---
+  Scanning Anthracnose...
+  Scanning Dry_Leaf...
+  Scanning Healthy...
+  Scanning Leaf_Spot...
+
+              precision    recall  f1-score   support
+
+ Anthracnose       1.00      1.00      1.00       301
+    Dry_Leaf       1.00      1.00      1.00       450
+     Healthy       1.00      1.00      1.00       506
+   Leaf_Spot       1.00      1.00      1.00       484
+
+    accuracy                           1.00      1741
+   macro avg       1.00      1.00      1.00      1741
+weighted avg       1.00      1.00      1.00      1741
+
+
+--- [3/5] Generating Accuracy Bar Graph ---
+  Bar graph saved to: C:\Rubber_leaf\reports\accuracy_bar_chart.png
+
+--- [3/4] Generating Grad-CAM Heatmaps ---
+  Grad-CAM for Anthracnose...
+  Grad-CAM for Dry_Leaf...
+  Grad-CAM for Healthy...
+  Grad-CAM for Leaf_Spot...
+
+COMPLETED: View results in C:\Rubber_leaf\reports

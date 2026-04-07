@@ -38,3 +38,5 @@ pip install -r requirements.txt
 # Run the server
 python app.py
 ```
+
+# Rubber_leaf-disease_detector

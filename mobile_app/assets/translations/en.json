@@ -35,7 +35,7 @@
   "settings": "Settings",
   "version": "Rubber Tree Disease Prediction System v2.2",
   "hint_title": "How to get results",
-  "hint_1": "Upload leaf photo from top panel",
+  "hint_1": "Upload leaf photo from left panel",
   "hint_2": "Click \"Detect Disease\" button",
   "hint_3": "View full AI diagnosis here",
   "hint_4": "Results auto-saved to History tab",
@@ -163,5 +163,12 @@
   "risk_med": "Medium",
   "risk_high": "High",
   "weather_alert_title": "Weather Outlook",
-  "high_risk_warning": "Warning: High humidity detected (>80%). Conditions are ideal for fungal spread. Monitor trees closely."
+  "high_risk_warning": "Warning: High humidity detected (>80%). Conditions are ideal for fungal spread. Monitor trees closely.",
+  "btn_live_scan": "Real-Time Scanner",
+  "viewing_local_stats": "Viewing Local Statistics",
+  "local_data_hint": "Offline mode showing data from this device only",
+  "err_invalid_image_title": "Image Not Recognized",
+  "err_invalid_image_desc": "Please provide a clear, close-up photo of a Rubber Tree leaf for accurate diagnosis.",
+  "Distribution Breakdown": "Distribution Breakdown",
+  "Detection History": "Detection History"
 }
