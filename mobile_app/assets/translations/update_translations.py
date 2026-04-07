@@ -34,7 +34,8 @@ translations = {
         "err_invalid_image_title": "Image Not Recognized",
         "err_invalid_image_desc": "Please provide a clear, close-up photo of a Rubber Tree leaf for accurate diagnosis.",
         "Distribution Breakdown": "Distribution Breakdown",
-        "Detection History": "Detection History"
+        "Detection History": "Detection History",
+        "err_connection_failed": "Connection Failed: Ensure your phone and laptop are on the same Wi-Fi and the IP address is correct."
     },
     'kn': {
         "hint_title": "ಫಲಿತಾಂಶಗಳನ್ನು ಪಡೆಯುವುದು ಹೇಗೆ",
@@ -69,7 +70,8 @@ translations = {
         "err_invalid_image_title": "ಚಿತ್ರ ಗುರುತಿಸಲಾಗಿಲ್ಲ",
         "err_invalid_image_desc": "ನಿಖರವಾದ ರೋಗನಿರ್ಣಯಕ್ಕಾಗಿ ರಬ್ಬರ್ ಮರದ ಎಲೆಯ ಸ್ಪಷ್ಟವಾದ, ಹತ್ತಿರದ ಫೋಟೋವನ್ನು ದಯವಿಟ್ಟು ಒದಗಿಸಿ.",
         "Distribution Breakdown": "ಹಂಚಿಕೆ ಸ್ಥಿತಿ",
-        "Detection History": "ಪತ್ತೆ ಹಚ್ಚಿದ ಇತಿಹಾಸ"
+        "Detection History": "ಪತ್ತೆ ಹಚ್ಚಿದ ಇತಿಹಾಸ",
+        "err_connection_failed": "ಸಂಪರ್ಕ ವಿಫಲವಾಗಿದೆ: ನಿಮ್ಮ ಫೋನ್ ಮತ್ತು ಲ್ಯಾಪ್‌ಟಾಪ್ ಒಂದೇ ವೈ-ಫೈನಲ್ಲಿದೆಯೇ ಮತ್ತು ಐಪಿ ವಿಳಾಸ ಸರಿಯಾಗಿದೆಯೇ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ."
     },
     'hi': {
         "hint_title": "परिणाम कैसे प्राप्त करें",
@@ -104,7 +106,8 @@ translations = {
         "err_invalid_image_title": "छवि पहचानी नहीं गई",
         "err_invalid_image_desc": "सटीक निदान के लिए कृपया रबर के पेड़ की पत्ती की स्पष्ट, क्लोज-अप फोटो प्रदान करें।",
         "Distribution Breakdown": "वितरण विश्लेषण",
-        "Detection History": "पता लगाने का इतिहास"
+        "Detection History": "पता लगाने का इतिहास",
+        "err_connection_failed": "कनेक्शन विफल: सुनिश्चित करें कि आपका फोन और लैपटॉप एक ही वाई-फाई पर हैं और आईपी पता सही है।"
     },
     'ta': {
         "hint_title": "முடிவுகளை பெறுவது எப்படி",
@@ -139,7 +142,8 @@ translations = {
         "err_invalid_image_title": "படம் அடையாளம் காணப்படவில்லை",
         "err_invalid_image_desc": "துல்லியமான நோயறிதலுக்கு ரப்பர் மர இலையின் தெளிவான, நெருக்கமான புகைப்படத்தை வழங்கவும்.",
         "Distribution Breakdown": "பரவல் விவரம்",
-        "Detection History": "கண்டறிதல் வரலாறு"
+        "Detection History": "கண்டறிதல் வரலாறு",
+        "err_connection_failed": "இணைப்பு தோல்வியடைந்தது: உங்கள் தொலைபேசியும் மடிக்கணினியும் ஒரே வைஃபை-யுடன் இணைக்கப்பட்டுள்ளதா மற்றும் ஐபி முகவரி சரியாக உள்ளதா என்பதை உறுதிப்படுத்தவும்."
     },
     'ml': {
         "hint_title": "ഫലങ്ങൾ എങ്ങനെ എടുക്കാം",
@@ -174,7 +178,8 @@ translations = {
         "err_invalid_image_title": "ചിത്രം തിരിച്ചറിഞ്ഞില്ല",
         "err_invalid_image_desc": "കൃത്യമായ രോഗനിർണ്ണയത്തിനായി റബ്ബർ മരത്തിന്റെ ഇലയുടെ വ്യക്തമായ, ക്ലോസപ്പ് ഫോട്ടോ നൽകുക.",
         "Distribution Breakdown": "വിതരണ വിശകലനം",
-        "Detection History": "രോഗനിർണ്ണയ ചരിത്രം"
+        "Detection History": "രോഗനിർണ്ണയ ചരിത്രം",
+        "err_connection_failed": "കണക്ഷൻ പരാജയപ്പെട്ടു: നിങ്ങളുടെ ഫോണും ലാപ്ടോപ്പും ഒരേ വൈ-ഫൈയിലാണെന്നും ഐപി വിലാസം ശരിയാണെന്നും ഉറപ്പാക്കുക."
     }
 }
 

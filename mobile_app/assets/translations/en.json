@@ -170,5 +170,6 @@
   "err_invalid_image_title": "Image Not Recognized",
   "err_invalid_image_desc": "Please provide a clear, close-up photo of a Rubber Tree leaf for accurate diagnosis.",
   "Distribution Breakdown": "Distribution Breakdown",
-  "Detection History": "Detection History"
+  "Detection History": "Detection History",
+  "err_connection_failed": "Connection Failed: Ensure your phone and laptop are on the same Wi-Fi and the IP address is correct."
 }

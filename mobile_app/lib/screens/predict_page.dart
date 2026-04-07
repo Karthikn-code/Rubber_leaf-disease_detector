@@ -37,6 +37,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
 
   final offlineMode = ValueNotifier<bool>(true);
   bool _isValid = true;
+  bool _usingFallback = false;
 
   @override
   void initState() {
@@ -79,7 +80,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
 
   Future<void> _detect() async {
     if (_img == null) return;
-    setState(() { _loading = true; _error = null; _saved = false; _isValid = true; });
+    setState(() { _loading = true; _error = null; _saved = false; _isValid = true; _usingFallback = false; });
     try {
       Position? pos;
       try { pos = await _getPos(); } catch(_) {}
@@ -89,7 +90,6 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
       if (offlineMode.value) {
         final res = await _tf.predictFile(File(_img!.path));
         if (res == null) throw 'Inference failed';
-        
         _isValid = res['isValid'] ?? true;
         data = {
           'label': res['label'],
@@ -98,13 +98,27 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
           'disease_info': DiseaseItem.all.firstWhere((d) => d.classLabel == res['label']).toMap(),
         };
       } else {
-        final req = http.MultipartRequest('POST', Uri.parse('$kApiBaseUrl/predict'));
-        final bytes = await _img!.readAsBytes();
-        req.files.add(http.MultipartFile.fromBytes('image', bytes, filename: _img!.name));
-        final resp  = await req.send().timeout(const Duration(seconds: 15));
-        final body = await resp.stream.bytesToString();
-        data = json.decode(body) as Map<String, dynamic>;
-        _isValid = (data['confidence'] as num).toDouble() >= 0.90;
+        try {
+          final req = http.MultipartRequest('POST', Uri.parse('$kApiBaseUrl/predict'));
+          final bytes = await _img!.readAsBytes();
+          req.files.add(http.MultipartFile.fromBytes('image', bytes, filename: _img!.name));
+          final resp  = await req.send().timeout(const Duration(seconds: 3));
+          final body = await resp.stream.bytesToString();
+          data = json.decode(body) as Map<String, dynamic>;
+          _isValid = (data['confidence'] as num).toDouble() >= 0.90;
+        } catch (e) {
+          debugPrint('Online failed, falling back to Native AI: $e');
+          final res = await _tf.predictFile(File(_img!.path));
+          if (res == null) throw 'Fallback failed';
+          _isValid = res['isValid'] ?? true;
+          data = {
+            'label': res['label'],
+            'confidence': res['confidence'],
+            'all_predictions': res['all_predictions'],
+            'disease_info': DiseaseItem.all.firstWhere((d) => d.classLabel == res['label']).toMap(),
+          };
+          _usingFallback = true;
+        }
       }
 
       if (_isValid) {
@@ -127,7 +141,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
       setState(() { _result = data; _loading = false; });
     } catch (e) {
       setState(() {
-        _error = 'err_title'.tr(); 
+        _error = 'err_title'.tr();
         _loading = false;
       });
     }
@@ -262,6 +276,19 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
                       padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                       child: Column(children: [
                         if (_error != null) Text(_error!, style: const TextStyle(color: Colors.red)),
+                        if (_usingFallback)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10),
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(color: kOrange.withOpacity(0.1), borderRadius: BorderRadius.circular(8), border: Border.all(color: kOrange.withOpacity(0.3))),
+                              child: Row(children: [
+                                const Icon(Icons.bolt_rounded, color: kOrange, size: 14),
+                                const SizedBox(width: 8),
+                                Expanded(child: Text('Smart Fallback: Using Native AI'.tr(), style: const TextStyle(color: kOrange, fontSize: 10, fontWeight: FontWeight.bold))),
+                              ]),
+                            ),
+                          ),
                       ]),
                     )),
                   ]),
