@@ -35,7 +35,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
   late Animation<double> _pulsA;
   final TfliteService _tf = TfliteService();
 
-  final offlineMode = ValueNotifier<bool>(true);
+  final offlineMode = ValueNotifier<bool>(!kIsWeb);
   bool _isValid = true;
   bool _usingFallback = false;
 
@@ -88,8 +88,10 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
       Map<String, dynamic> data;
 
       if (offlineMode.value) {
-        final res = await _tf.predictFile(File(_img!.path));
-        if (res == null) throw 'Inference failed';
+        if (kIsWeb) throw 'Offline AI is not supported on the Web version.';
+        final bytes = await _img!.readAsBytes();
+        final res = await _tf.predictFile(bytes);
+        if (res == null) throw 'Local AI Inference failed. Model returned null.';
         _isValid = res['isValid'] ?? true;
         data = {
           'label': res['label'],
@@ -103,13 +105,20 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
           final bytes = await _img!.readAsBytes();
           req.files.add(http.MultipartFile.fromBytes('image', bytes, filename: _img!.name));
           final resp  = await req.send().timeout(const Duration(seconds: 20));
+          
+          if (resp.statusCode != 200) {
+            throw 'Server responded with status code: ${resp.statusCode}';
+          }
+          
           final body = await resp.stream.bytesToString();
           data = json.decode(body) as Map<String, dynamic>;
           _isValid = (data['confidence'] as num).toDouble() >= 0.90;
         } catch (e) {
           debugPrint('Online failed, falling back to Native AI: $e');
-          final res = await _tf.predictFile(File(_img!.path));
-          if (res == null) throw 'Fallback failed';
+          if (kIsWeb) throw 'Online server connection failed: $e';
+          final bytes = await _img!.readAsBytes();
+          final res = await _tf.predictFile(bytes);
+          if (res == null) throw 'Fallback Local AI failed. Model returned null.';
           _isValid = res['isValid'] ?? true;
           data = {
             'label': res['label'],
@@ -142,13 +151,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
     } catch (e) {
       debugPrint('Prediction Error: $e');
       setState(() {
-        if (e.toString().contains('Inference failed') || e.toString().contains('Fallback failed')) {
-          _error = 'Internal AI Error'.tr();
-        } else if (e.toString().contains('SocketException') || e.toString().contains('timeout')) {
-          _error = 'Network Timeout'.tr();
-        } else {
-          _error = 'err_title'.tr();
-        }
+        _error = "${'err_title'.tr()}: \n$e";
         _loading = false;
       });
     }

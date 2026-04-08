@@ -171,5 +171,8 @@
   "err_invalid_image_desc": "Please provide a clear, close-up photo of a Rubber Tree leaf for accurate diagnosis.",
   "Distribution Breakdown": "Distribution Breakdown",
   "Detection History": "Detection History",
-  "err_connection_failed": "Connection Failed: Ensure your phone and laptop are on the same Wi-Fi and the IP address is correct."
+  "err_connection_failed": "Connection Failed: Ensure your phone and laptop are on the same Wi-Fi and the IP address is correct.",
+  "Internal AI Error": "Internal AI Error: Could not process image locally.",
+  "Network Timeout": "Network Timeout: Could not reach the live server.",
+  "Platform Error": "Platform Error: Feature not supported on this device."
 }

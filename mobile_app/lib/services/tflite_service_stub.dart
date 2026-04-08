@@ -10,7 +10,7 @@ class TfliteService {
     // Stub
   }
 
-  Future<Map<String, dynamic>?> predictFile(dynamic file) async {
+  Future<Map<String, dynamic>?> predictFile(dynamic bytes) async {
     log("TFLite file prediction stubbed (Web). Using Online API instead.");
     return null;
   }

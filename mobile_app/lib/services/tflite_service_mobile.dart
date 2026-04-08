@@ -29,12 +29,18 @@ class TfliteService {
     _interpreter?.close();
   }
 
-  Future<Map<String, dynamic>?> predictFile(File file) async {
-    if (_interpreter == null) await loadModel();
+  Future<Map<String, dynamic>?> predictFile(Uint8List bytes) async {
+    if (_interpreter == null || _isModelLoading) await loadModel();
     if (_interpreter == null) return null;
 
-    final bytes = await file.readAsBytes();
-    img.Image? decoded = img.decodeImage(bytes);
+    img.Image? decoded;
+    try {
+      decoded = img.decodeImage(bytes);
+    } catch (e) {
+      log("Error decoding image bytes: $e");
+      return null;
+    }
+    
     if (decoded == null) return null;
 
     // Center crop to square
