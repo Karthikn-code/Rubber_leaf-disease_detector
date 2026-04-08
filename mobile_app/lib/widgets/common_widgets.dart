@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 
 // ─── DESIGN TOKENS ───────────────────────────────────────────────────────────
 const kBg      = Color(0xFF060B18);
-String get kApiBaseUrl => kIsWeb ? Uri.base.origin : 'http://10.50.149.191:5000';
+String get kApiBaseUrl => kIsWeb ? Uri.base.origin : 'https://rubber-leaf-ai.onrender.com';
 const kCard    = Color(0xFF111D35);
 const kGreen   = Color(0xFF00E676);
 const kGreenD  = Color(0xFF00C853);

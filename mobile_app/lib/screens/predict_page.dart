@@ -140,8 +140,15 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
       }
       setState(() { _result = data; _loading = false; });
     } catch (e) {
+      debugPrint('Prediction Error: $e');
       setState(() {
-        _error = 'err_title'.tr();
+        if (e.toString().contains('Inference failed') || e.toString().contains('Fallback failed')) {
+          _error = 'Internal AI Error'.tr();
+        } else if (e.toString().contains('SocketException') || e.toString().contains('timeout')) {
+          _error = 'Network Timeout'.tr();
+        } else {
+          _error = 'err_title'.tr();
+        }
         _loading = false;
       });
     }

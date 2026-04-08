@@ -391,6 +391,8 @@ def serve_flutter_assets(path):
         return "Not found", 404
 
 
+# ─── INIT ────────────────────────────────────────────────────────────────────
+load_trained_model()
+
 if __name__ == '__main__':
-    load_trained_model()
     app.run(host='0.0.0.0', port=5000, debug=False)

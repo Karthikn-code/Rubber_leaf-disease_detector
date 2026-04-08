@@ -9,12 +9,19 @@ class TfliteService {
   Interpreter? _interpreter;
   final List<String> _labels = ['Anthracnose', 'Dry_Leaf', 'Healthy', 'Leaf_Spot'];
 
+  bool _isModelLoading = false;
+
   Future<void> loadModel() async {
+    if (_interpreter != null || _isModelLoading) return;
+    _isModelLoading = true;
     try {
+      log("⏳ Loading TFLite Model...");
       _interpreter = await Interpreter.fromAsset('assets/model/rubber_leaf_model.tflite');
-      log("TFLite Model Loaded Successfully. Shape: ${_interpreter?.getInputTensor(0).shape}");
+      log("✅ TFLite Model Loaded Successfully. Shape: ${_interpreter?.getInputTensor(0).shape}");
     } catch (e) {
-      log("Error loading TFLite Model: $e");
+      log("❌ CS Error loading TFLite Model: $e");
+    } finally {
+      _isModelLoading = false;
     }
   }
 
