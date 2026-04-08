@@ -102,7 +102,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
           final req = http.MultipartRequest('POST', Uri.parse('$kApiBaseUrl/predict'));
           final bytes = await _img!.readAsBytes();
           req.files.add(http.MultipartFile.fromBytes('image', bytes, filename: _img!.name));
-          final resp  = await req.send().timeout(const Duration(seconds: 3));
+          final resp  = await req.send().timeout(const Duration(seconds: 20));
           final body = await resp.stream.bytesToString();
           data = json.decode(body) as Map<String, dynamic>;
           _isValid = (data['confidence'] as num).toDouble() >= 0.90;
