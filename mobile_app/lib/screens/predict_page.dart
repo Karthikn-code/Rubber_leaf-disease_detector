@@ -104,7 +104,7 @@ class _PredictPageState extends State<PredictPage> with TickerProviderStateMixin
           final req = http.MultipartRequest('POST', Uri.parse('$kApiBaseUrl/predict'));
           final bytes = await _img!.readAsBytes();
           req.files.add(http.MultipartFile.fromBytes('image', bytes, filename: _img!.name));
-          final resp  = await req.send().timeout(const Duration(seconds: 20));
+          final resp  = await req.send().timeout(const Duration(seconds: 60));
           
           if (resp.statusCode != 200) {
             throw 'Server responded with status code: ${resp.statusCode}';
